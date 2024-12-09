@@ -19,7 +19,7 @@ function App() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8050")
+    const ws = new WebSocket("wss://websockets-c6hs.onrender.com/")
     setSocket(ws)
     ws.onmessage = (e)=> {
       const ms = JSON.stringify(e.data)
