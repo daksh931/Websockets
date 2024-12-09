@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
   const [socket, setSocket] = useState()
+  const inputValue = useRef();
 
-  function sendMessage () {
-    socket.send("ping");
+  function sendMessage (e) {
+    e.preventDefault();
+    // console.log(inputValue.current.value);
+    socket.send(inputValue.current.value);
   }
 
 
@@ -25,11 +28,11 @@ function App() {
 
   return (
     <div>
-      {/* <form action="submit">  */}
+      <form onSubmit={sendMessage} >  
 
-      <input type="text" placeholder='write something...' />
-      <button onClick={sendMessage} > Send</button>
-      {/* </form> */}
+      <input type="text" ref={inputValue} placeholder='write something...' />
+      <button  type="submit"  > Send</button>
+      </form>
     </div>
   )
 }
